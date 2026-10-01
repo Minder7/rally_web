@@ -1,0 +1,1298 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta name="theme-color" content="#92400e">
+	<meta name="description" content="Rally، تجمعات جري قريبة منك. اكتشف تجمعك القادم وانضم لأصحابك.">
+	<title>Rally | الجري أحلى مع ناس بتحبك</title>
+	<link rel="manifest" href="./manifest.json">
+	<link rel="apple-touch-icon" href="./assets/icons/rally-icon-192.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: dark;
+			--bg-gradient: linear-gradient(180deg, #064e3b 0%, #065f46 30%, #047857 70%, #10b981 100%);
+			--wave-color: #d1fae5;
+			--status-text-color: rgba(236, 253, 245, 0.95);
+			--dock-bg: rgba(255, 255, 255, 0.06);
+			--dock-border: rgba(255, 255, 255, 0.12);
+			--dock-item-bg: rgba(255, 255, 255, 0.08);
+			--dock-item-color: #d1fae5;
+			--mic-btn-bg: #d1fae5;
+			--mic-btn-color: #064e3b;
+			--panel-bg: rgba(6, 78, 59, 0.82);
+			--panel-text: #d1fae5;
+			--select-bg: rgba(255, 255, 255, 0.06);
+			--select-border: rgba(255, 255, 255, 0.15);
+			--select-option-bg: #022c22;
+			--select-option-hover: rgba(255, 255, 255, 0.08);
+			--primary-accent: #6ee7b7;
+			--primary-accent-hover: #a7f3d0;
+			--accent-icon-filter: brightness(0) saturate(100%) invert(77%) sepia(17%) saturate(1185%) hue-rotate(101deg) brightness(100%) contrast(89%);
+			--mic-icon-filter: brightness(0) saturate(100%) invert(19%) sepia(24%) saturate(1865%) hue-rotate(116deg) brightness(93%) contrast(99%);
+			--card-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+			--scrollbar-track: #022c22;
+			--scrollbar-thumb: #047857;
+			--scrollbar-thumb-hover: #059669;
+			--page: #022c22;
+			--surface: rgba(255, 255, 255, 0.05);
+			--ink: #f0fdf4;
+			--muted: var(--status-text-color);
+			--line: var(--dock-border);
+			--blue: var(--primary-accent);
+			--blue-dark: #34d399;
+			--blue-soft: rgba(110, 231, 183, 0.12);
+			--red: #d9485f;
+			--green: #059669;
+			--shadow: var(--card-shadow);
+		}
+		body[data-theme="golden"] {
+			--bg-gradient: linear-gradient(180deg, #92400e 0%, #b45309 30%, #d97706 70%, #f59e0b 100%);
+			--wave-color: #fef3c7;
+			--status-text-color: rgba(254, 243, 199, 0.95);
+			--dock-bg: rgba(255, 255, 255, 0.06);
+			--dock-border: rgba(255, 255, 255, 0.12);
+			--dock-item-bg: rgba(255, 255, 255, 0.08);
+			--dock-item-color: #fef3c7;
+			--mic-btn-bg: #fef3c7;
+			--mic-btn-color: #78350f;
+			--panel-bg: rgba(120, 53, 15, 0.82);
+			--panel-text: #fde68a;
+			--select-bg: rgba(255, 255, 255, 0.06);
+			--select-border: rgba(255, 255, 255, 0.15);
+			--select-option-bg: #451a03;
+			--select-option-hover: rgba(255, 255, 255, 0.08);
+			--primary-accent: #fcd34d;
+			--primary-accent-hover: #fde68a;
+			--accent-icon-filter: brightness(0) saturate(100%) invert(84%) sepia(57%) saturate(401%) hue-rotate(344deg) brightness(103%) contrast(101%);
+			--mic-icon-filter: brightness(0) saturate(100%) invert(17%) sepia(42%) saturate(1112%) hue-rotate(345deg) brightness(95%) contrast(93%);
+			--card-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+			--scrollbar-track: #451a03;
+			--scrollbar-thumb: #78350f;
+			--scrollbar-thumb-hover: #92400e;
+			--page: #451a03;
+			--surface: rgba(255, 255, 255, 0.05);
+			--ink: #fde68a;
+			--muted: var(--status-text-color);
+			--line: var(--dock-border);
+			--blue: var(--primary-accent);
+			--blue-dark: #fbbf24;
+			--blue-soft: rgba(252, 211, 77, 0.14);
+			--green: #b45309;
+			--shadow: var(--card-shadow);
+		}
+		body[data-theme="midnight"] {
+			--bg-gradient: radial-gradient(circle at center, #0a2d7a 0%, #030d25 70%, #010611 100%);
+			--wave-color: #dbeafe;
+			--status-text-color: rgba(219, 234, 254, 0.92);
+			--dock-bg: rgba(1, 6, 17, 0.82);
+			--dock-border: rgba(255, 255, 255, 0.12);
+			--dock-item-bg: rgba(255, 255, 255, 0.08);
+			--dock-item-color: #dbeafe;
+			--mic-btn-bg: #58b9ff;
+			--mic-btn-color: #041225;
+			--panel-bg: rgba(8, 22, 52, 0.82);
+			--panel-text: #dbeafe;
+			--select-bg: rgba(255, 255, 255, 0.06);
+			--select-border: rgba(255, 255, 255, 0.15);
+			--select-option-bg: #030d25;
+			--select-option-hover: rgba(255, 255, 255, 0.08);
+			--primary-accent: #58b9ff;
+			--primary-accent-hover: #85ccff;
+			--accent-icon-filter: brightness(0) saturate(100%) invert(32%) sepia(93%) saturate(1475%) hue-rotate(190deg) brightness(90%) contrast(94%);
+			--mic-icon-filter: brightness(0) saturate(100%) invert(6%) sepia(42%) saturate(1592%) hue-rotate(178deg) brightness(95%) contrast(98%);
+			--card-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+			--scrollbar-track: #030d25;
+			--scrollbar-thumb: #174a8b;
+			--scrollbar-thumb-hover: #238fe0;
+			--page: #010611;
+			--surface: rgba(255, 255, 255, 0.05);
+			--ink: #ffffff;
+			--muted: #A0AEC0;
+			--line: rgba(255, 255, 255, 0.1);
+			--blue: var(--primary-accent);
+			--blue-dark: #238fe0;
+			--blue-soft: rgba(88, 185, 255, 0.12);
+			--green: #16866a;
+			--shadow: var(--card-shadow);
+		}
+
+		* { box-sizing: border-box; }
+		html { min-height: 100%; background: var(--page); }
+		body {
+			min-height: 100vh;
+			margin: 0;
+			background: var(--bg-gradient);
+			background-attachment: fixed;
+			color: var(--ink);
+			font-family: "Cairo", Tahoma, sans-serif;
+			-webkit-font-smoothing: antialiased;
+		}
+		button, input, select, textarea { font: inherit; }
+		button { cursor: pointer; }
+		button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+			outline: 3px solid color-mix(in srgb, var(--primary-accent) 42%, transparent);
+			outline-offset: 2px;
+		}
+		.shell { width: min(100% - 32px, 720px); margin: 0 auto; }
+		.topbar {
+			position: sticky;
+			z-index: 5;
+			top: 0;
+			display: grid;
+			grid-template-columns: 1fr auto 1fr;
+			align-items: center;
+			min-height: 66px;
+			background: var(--dock-bg);
+			border-bottom: 1px solid var(--dock-border);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+		}
+		.topbar .shell { display: contents; }
+		.brand {
+			justify-self: center;
+			color: var(--ink);
+			font-size: 22px;
+			font-weight: 800;
+			letter-spacing: 2px;
+			text-decoration: none;
+		}
+		.text-action {
+			position: relative;
+			display: grid;
+			width: 42px;
+			height: 42px;
+			place-items: center;
+			padding: 0;
+			border: 0;
+			background: transparent;
+		}
+		.text-action:hover { color: var(--blue); }
+		.notification-icon { width: 23px; height: 23px; object-fit: contain; opacity: .86; filter: brightness(0) invert(1); }
+		.notification-dot {
+			position: absolute;
+			top: 7px;
+			right: 7px;
+			width: 9px;
+			height: 9px;
+			border: 2px solid #030d25;
+			border-radius: 50%;
+			background: #e5484d;
+		}
+		.topbar-side { display: flex; align-items: center; }
+		.topbar-side:first-child { justify-content: flex-start; }
+		.topbar-side:last-child { justify-content: flex-end; }
+		main { padding: 20px 0 116px; }
+		.hero {
+			position: relative;
+			display: flex;
+			min-height: 260px;
+			align-items: flex-start;
+			overflow: hidden;
+			padding: 28px;
+			border-radius: 20px;
+			background: #243b53 url("assets/images/running_girl.jpg") center 42% / cover no-repeat;
+			color: #fff;
+			isolation: isolate;
+		}
+		.hero::before {
+			position: absolute;
+			z-index: -1;
+			inset: 0;
+			background: linear-gradient(90deg, rgba(11, 25, 43, .76), rgba(11, 25, 43, .28) 72%, rgba(11, 25, 43, .18));
+			content: "";
+		}
+		.hero-copy { max-width: 420px; }
+		.eyebrow { margin: 0 0 7px; color: #dcecff; font-size: 13px; font-weight: 600; }
+		.hero h1 { margin: 0; font-size: clamp(26px, 7vw, 38px); line-height: 1.35; font-weight: 800; }
+		.hero p { margin: 5px 0 18px; color: #f1f6ff; font-size: 15px; }
+		.primary-button, .outline-button, .quiet-button, .danger-button {
+			min-height: 46px;
+			padding: 10px 18px;
+			border-radius: 12px;
+			font-weight: 700;
+			transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+		}
+		.primary-button {
+			border: 1px solid var(--blue);
+			background: var(--blue);
+			color: var(--mic-btn-color);
+			box-shadow: 0 6px 20px color-mix(in srgb, var(--primary-accent) 28%, transparent);
+		}
+		.primary-button:hover { transform: translateY(-1px); background: var(--primary-accent-hover); }
+		.hero .primary-button { border-color: var(--blue); background: var(--blue); color: var(--mic-btn-color); box-shadow: 0 6px 20px color-mix(in srgb, var(--primary-accent) 28%, transparent); }
+		.hero .primary-button:hover { background: var(--primary-accent-hover); }
+		.outline-button { border: 1px solid rgba(255, 255, 255, .2); background: rgba(255, 255, 255, .04); color: var(--ink); }
+		.outline-button:hover, .quiet-button:hover { background: rgba(255, 255, 255, .1); }
+		.quiet-button { border: 1px solid transparent; background: transparent; color: var(--muted); }
+		.danger-button { border: 1px solid rgba(217, 72, 95, .34); background: rgba(217, 72, 95, .1); color: #ff8798; }
+		.danger-button:hover { background: rgba(217, 72, 95, .2); }
+		.section-heading {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			margin: 25px 2px 13px;
+		}
+		.section-heading h2 { margin: 0; font-size: 19px; font-weight: 800; }
+		.section-heading span { color: var(--muted); font-size: 13px; }
+		.post-list { display: grid; gap: 14px; }
+		.post-card {
+			overflow: hidden;
+			padding: 18px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 20px;
+			background: rgba(255, 255, 255, 0.05);
+			-webkit-backdrop-filter: blur(16px);
+			backdrop-filter: blur(16px);
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+			animation: arrive .24s ease both;
+		}
+		@keyframes arrive { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+		.post-actions { display: flex; justify-content: flex-start; gap: 4px; margin: -7px -7px 8px 0; }
+		.small-action {
+			min-width: 40px;
+			min-height: 38px;
+			padding: 5px 9px;
+			border: 0;
+			border-radius: 9px;
+			background: transparent;
+			color: var(--muted);
+			font-size: 13px;
+		}
+		.small-action:hover { background: rgba(255, 255, 255, .08); }
+		.small-action.delete { color: var(--red); }
+		.post-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+		.post-title { margin: 0; font-size: 18px; line-height: 1.5; font-weight: 800; }
+		.distance-pill {
+			flex: 0 0 auto;
+			min-width: 64px;
+			padding: 7px 10px;
+			border-radius: 10px;
+			border: 1px solid var(--dock-border);
+			background: var(--blue-soft);
+			color: var(--blue);
+			text-align: center;
+			font-size: 14px;
+			font-weight: 800;
+			direction: ltr;
+		}
+		.post-meta { display: flex; flex-wrap: wrap; gap: 7px 14px; margin: 9px 0 15px; color: var(--muted); font-size: 13px; }
+		.post-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+		.detail-grid { display: grid; gap: 10px; }
+		.detail-box {
+			min-width: 0;
+			padding: 11px 12px;
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			border-radius: 12px;
+			background: rgba(255, 255, 255, 0.03);
+		}
+		.detail-box.wide { grid-column: 1 / -1; }
+		.detail-label { display: block; margin-bottom: 3px; color: var(--muted); font-size: 11px; font-weight: 600; }
+		.detail-value { display: block; overflow-wrap: anywhere; color: rgba(255, 255, 255, .82); font-size: 13px; line-height: 1.7; font-weight: 600; }
+		.post-bottom { display: grid; grid-template-columns: 7fr 3fr; gap: 10px; margin-top: 10px; }
+		.distance-box { display: grid; min-width: 0; place-content: center; justify-items: center; border: 1px solid var(--dock-border); border-radius: 12px; background: var(--blue-soft); text-align: center; }
+		.distance-number { color: var(--blue); font-size: 22px; line-height: 1.2; font-weight: 800; direction: ltr; }
+		.distance-unit { color: var(--muted); font-size: 11px; font-weight: 700; }
+		.share-button {
+			display: flex;
+			width: 100%;
+			min-height: 48px;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			margin-top: 14px;
+			border: 0;
+			border-radius: 11px;
+			background: var(--blue);
+			color: #fff;
+			font-size: 15px;
+			font-weight: 800;
+			box-shadow: 0 6px 18px rgba(88, 185, 255, .25);
+		}
+		.share-button:hover { background: var(--primary-accent-hover); }
+		.share-button.is-shared { background: var(--green); color: #fff; box-shadow: 0 5px 15px rgba(22, 134, 106, .24); }
+		.empty-state {
+			padding: 38px 20px;
+			border: 1px dashed rgba(255, 255, 255, .2);
+			border-radius: 16px;
+			background: rgba(255, 255, 255, .025);
+			backdrop-filter: blur(12px);
+			color: var(--muted);
+			text-align: center;
+		}
+		.empty-state strong { display: block; margin-bottom: 5px; color: var(--ink); font-size: 16px; }
+		.bottom-nav {
+			position: fixed;
+			z-index: 6;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			padding: 9px 0 calc(9px + env(safe-area-inset-bottom));
+			border-top: 1px solid var(--dock-border);
+			background: var(--dock-bg);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+		}
+		.nav-inner { display: grid; grid-template-columns: 1fr 112px 1fr; align-items: center; }
+		.nav-item {
+			display: grid;
+			min-height: 48px;
+			place-items: center;
+			gap: 0;
+			border: 0;
+			background: transparent;
+			color: var(--muted);
+			font-size: 11px;
+			font-weight: 700;
+		}
+		.nav-item.active { color: var(--blue); }
+		.nav-home-icon {
+			width: 25px;
+			height: 25px;
+			object-fit: contain;
+			filter: brightness(0) invert(.72);
+		}
+		.nav-item.active .nav-home-icon {
+			filter: var(--accent-icon-filter);
+		}
+		.nav-profile-icon {
+			width: 28px;
+			height: 28px;
+			object-fit: contain;
+			filter: brightness(0) invert(.72);
+		}
+		.nav-item.active .nav-profile-icon {
+			filter: var(--accent-icon-filter);
+		}
+		.back-button {
+			display: grid;
+			width: 42px;
+			height: 42px;
+			place-items: center;
+			border: 1px solid var(--dock-border);
+			border-radius: 50%;
+			background: var(--dock-item-bg);
+			color: var(--blue);
+			font-size: 25px;
+			line-height: 1;
+		}
+		.back-button:hover { background: var(--blue-soft); }
+		.back-button img {
+			width: 23px;
+			height: 23px;
+			filter: var(--accent-icon-filter);
+		}
+		.nav-add {
+			justify-self: center;
+			display: grid;
+			width: 52px;
+			min-width: 52px;
+			height: 52px;
+			place-items: center;
+			padding: 0;
+			border: 0;
+			border-radius: 50%;
+			background: var(--mic-btn-bg);
+			color: var(--mic-btn-color);
+			box-shadow: 0 8px 22px color-mix(in srgb, var(--primary-accent) 35%, transparent);
+		}
+		.nav-add img {
+			width: 25px;
+			height: 25px;
+			object-fit: contain;
+			filter: var(--mic-icon-filter);
+			transform: translate(1px, -4px);
+		}
+		.nav-add:hover { background: var(--primary-accent-hover); transform: translateY(-1px); }
+		.screen-title { margin: 5px 0 18px; font-size: 22px; font-weight: 800; }
+		.profile-panel {
+			display: grid;
+			justify-items: center;
+			padding: 34px 20px;
+			border: 1px solid rgba(255, 255, 255, .1);
+			border-radius: 20px;
+			background: rgba(255, 255, 255, .05);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			box-shadow: var(--shadow);
+		}
+		.avatar {
+			display: grid;
+			width: 86px;
+			height: 86px;
+			place-items: center;
+			border-radius: 50%;
+			background: var(--blue-soft);
+			color: var(--primary-accent);
+			font-size: 34px;
+			font-weight: 800;
+		}
+		.profile-name { margin: 13px 0 2px; font-size: 22px; font-weight: 800; }
+		.level-chip { padding: 4px 12px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 999px; background: rgba(255, 255, 255, .04); color: var(--muted); font-size: 13px; }
+		.notification-status { max-width: 340px; margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; text-align: center; }
+		.login-wrap { display: grid; min-height: 100vh; align-items: center; padding: 24px 0; }
+		.login-panel {
+			width: min(100%, 420px);
+			margin: auto;
+			padding: 30px;
+			border: 1px solid rgba(255, 255, 255, .1);
+			border-radius: 20px;
+			background: rgba(255, 255, 255, .06);
+			backdrop-filter: blur(18px);
+			-webkit-backdrop-filter: blur(18px);
+			box-shadow: 0 20px 50px rgba(0, 0, 0, .45);
+		}
+		.login-brand { margin: 0; color: var(--blue); text-align: center; font-size: 29px; font-weight: 800; letter-spacing: 2px; }
+		.login-subtitle { margin: 2px 0 24px; color: var(--muted); text-align: center; font-size: 13px; }
+		.field { display: grid; gap: 6px; margin-bottom: 15px; }
+		.field label { color: var(--muted); font-size: 13px; font-weight: 700; }
+		.field input, .field select, .field textarea {
+			width: 100%;
+			min-height: 46px;
+			padding: 10px 12px;
+			border: 1px solid var(--select-border);
+			border-radius: 10px;
+			background: var(--select-bg);
+			color: var(--ink);
+		}
+		.field select option { background: var(--select-option-bg); color: var(--ink); }
+		.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--blue); }
+		.field textarea { min-height: 76px; resize: vertical; }
+		.field input::placeholder, .field textarea::placeholder { color: rgba(255, 255, 255, .42); }
+		.theme-settings { width: min(100%, 360px); margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); }
+		.theme-settings h3 { margin: 0 0 10px; color: var(--muted); font-size: 13px; font-weight: 700; }
+		.theme-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+		.theme-choice { min-height: 42px; padding: 7px 5px; border: 1px solid var(--line); border-radius: 10px; background: var(--dock-item-bg); color: var(--dock-item-color); font-size: 12px; font-weight: 700; }
+		.theme-choice[aria-pressed="true"] { border-color: var(--primary-accent); background: var(--blue-soft); color: var(--primary-accent); box-shadow: 0 0 18px color-mix(in srgb, var(--primary-accent) 20%, transparent); }
+		.field-hint { margin: -5px 0 14px; color: var(--muted); font-size: 11px; }
+		.login-panel .primary-button { width: 100%; margin-top: 5px; }
+		.modal-backdrop {
+			position: fixed;
+			z-index: 20;
+			inset: 0;
+			display: grid;
+			align-items: end;
+			justify-items: center;
+			padding: 16px;
+			background: rgba(0, 0, 0, .6);
+			backdrop-filter: blur(5px);
+		}
+		.modal {
+			width: min(100%, 580px);
+			max-height: min(92dvh, 780px);
+			overflow: auto;
+			padding: 22px;
+			border: 1px solid var(--dock-border);
+			border-radius: 20px 20px 14px 14px;
+			background: var(--panel-bg);
+			color: var(--panel-text);
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
+			box-shadow: 0 20px 65px rgba(0, 0, 0, .55);
+			animation: sheet-in .2s ease both;
+		}
+		@keyframes sheet-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+		.modal-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 17px; }
+		.modal-header h2 { margin: 0; font-size: 18px; font-weight: 800; }
+		.modal-close { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; background: rgba(255, 255, 255, .06); color: var(--muted); font-size: 20px; }
+		.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+		.form-grid .full { grid-column: 1 / -1; }
+		.modal-actions { display: flex; gap: 9px; padding-top: 4px; }
+		.modal-actions button { flex: 1; }
+		.notification-list { display: grid; gap: 10px; margin-bottom: 20px; }
+		.notification-item {
+			display: flex;
+			align-items: flex-start;
+			gap: 10px;
+			padding: 14px;
+			border: 1px solid rgba(255, 255, 255, .1);
+			border-radius: 13px;
+			background: rgba(255, 255, 255, .045);
+			backdrop-filter: blur(12px);
+			touch-action: pan-y;
+			user-select: none;
+		}
+		.notification-item.selected { border-color: var(--primary-accent); background: var(--blue-soft); }
+		.notification-content { flex: 1; min-width: 0; }
+		.notification-content strong { display: block; color: var(--ink); font-size: 14px; }
+		.notification-content small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+		.notification-select { display: none; width: 24px; height: 24px; flex: 0 0 24px; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 7px; background: transparent; color: #06111f; }
+		.notification-list.selection-mode .notification-select { display: grid; }
+		.notification-select[aria-checked="true"] { border-color: var(--primary-accent); background: var(--primary-accent); }
+		.notification-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+		.notification-toolbar button { min-height: 38px; padding: 6px 9px; border: 1px solid var(--dock-border); border-radius: 9px; background: var(--dock-item-bg); color: var(--dock-item-color); font-size: 12px; font-weight: 700; }
+		.notification-toolbar .delete-selected { border-color: rgba(255, 90, 112, .3); color: #ff8798; }
+		.notification-toolbar button:disabled { opacity: .4; cursor: not-allowed; }
+		.shared-list { display: grid; gap: 9px; }
+		.shared-row { padding: 13px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 12px; background: rgba(255, 255, 255, .04); }
+		.shared-row strong { display: block; font-size: 14px; }
+		.shared-row span { color: var(--muted); font-size: 12px; }
+		.toast {
+			position: fixed;
+			z-index: 30;
+			right: 50%;
+			bottom: calc(88px + env(safe-area-inset-bottom));
+			max-width: calc(100vw - 32px);
+			padding: 11px 16px;
+			transform: translateX(50%);
+			border-radius: 12px;
+			background: var(--panel-bg);
+			color: var(--panel-text);
+			border: 1px solid var(--dock-border);
+			box-shadow: 0 8px 25px rgba(20, 35, 56, .2);
+			font-size: 13px;
+			animation: arrive .2s ease both;
+		}
+		.hidden { display: none !important; }
+		::-webkit-scrollbar { width: 8px; height: 8px; }
+		::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+		::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--scrollbar-thumb); }
+		::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+		@media (min-width: 650px) {
+			main { padding-top: 28px; }
+			.hero { min-height: 300px; padding: 36px; }
+			.modal-backdrop { align-items: center; }
+			.modal { border-radius: 18px; }
+		}
+		@media (max-width: 420px) {
+			.shell { width: min(100% - 24px, 720px); }
+			.hero { min-height: 230px; padding: 21px; border-radius: 16px; background-position: 58% center; }
+			.hero h1 { max-width: 240px; }
+			.post-card { padding: 14px; }
+			.post-summary, .detail-grid, .post-bottom { gap: 8px; }
+			.detail-box { padding: 9px; }
+			.form-grid { grid-template-columns: 1fr; }
+			.form-grid .full { grid-column: auto; }
+			.login-panel { padding: 24px 20px; }
+		}
+	</style>
+</head>
+<body data-theme="golden">
+	<div id="app"></div>
+	<div id="overlay-root"></div>
+	<div id="toast-root" aria-live="polite"></div>
+
+	<script type="module">
+		import {
+			auth,
+			database,
+			onAuthStateChanged,
+			onValue,
+			push,
+			ref,
+			remove,
+			signInAnonymously,
+			set,
+			signOut,
+			update,
+			updateProfile,
+			registerPushSubscription
+		} from "./api.js";
+
+		(() => {
+			"use strict";
+
+			const THEME_STORAGE_KEY = "rally_theme";
+			const availableThemes = ["golden", "midnight", "emerald"];
+			let activeTheme = localStorage.getItem(THEME_STORAGE_KEY) || "golden";
+			if (!availableThemes.includes(activeTheme)) activeTheme = "golden";
+			const applyTheme = () => {
+				document.body.dataset.theme = activeTheme;
+				document.querySelector('meta[name="theme-color"]').content = {
+					golden: "#92400e",
+					midnight: "#010611",
+					emerald: "#022c22"
+				}[activeTheme];
+			};
+			applyTheme();
+			let user = null;
+			let posts = [];
+			let shares = {};
+			let notifications = {};
+			let currentView = "home";
+			let notificationSelectionMode = false;
+			let selectedNotificationIds = new Set();
+			let notificationHoldTimer = null;
+			let suppressNotificationClickId = null;
+			let finishingRegistration = false;
+			let deferredInstallPrompt = null;
+			let pushPromptShownUid = null;
+			let registeredPushUid = null;
+			let authRevision = 0;
+			let toastTimer;
+			const subscriptions = { profile: null, posts: null, shares: null, notifications: null };
+			const pushPromptKey = (uid) => `rally_push_prompted_${uid}`;
+			const installPromptKey = "rally_install_prompt_shown";
+
+			const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (character) => ({
+				"&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+			})[character]);
+			const unreadNotificationCount = () => Object.values(notifications).filter((item) => !item.read).length;
+			const markNotificationsRead = () => {
+				Object.entries(notifications)
+					.filter(([, item]) => !item.read)
+					.forEach(([id]) => set(ref(database, `notifications/${user.uid}/${id}/read`), true)
+						.catch(() => showToast("تعذر تحديث حالة الإشعارات.")));
+			};
+
+			const formatSchedule = (post) => {
+				if (!post.date || !post.startTime || !post.endTime) return escapeHtml(post.time || "");
+				const date = new Date(`${post.date}T00:00:00`);
+				const dateText = new Intl.DateTimeFormat("ar-EG", {
+					weekday: "long", day: "numeric", month: "numeric", year: "numeric"
+				}).format(date);
+				const formatTime = (value) => {
+					const [hour, minute] = value.split(":").map(Number);
+					return new Intl.DateTimeFormat("ar-EG", {
+						hour: "numeric", minute: "2-digit", hour12: true
+					}).format(new Date(2000, 0, 1, hour, minute));
+				};
+				return `${escapeHtml(dateText)}<br>من ${escapeHtml(formatTime(post.startTime))} إلى ${escapeHtml(formatTime(post.endTime))}`;
+			};
+
+			const renderLogin = () => {
+				document.getElementById("app").innerHTML = `
+					<main class="shell login-wrap">
+						<form class="login-panel" id="auth-form">
+							<h1 class="login-brand">RALLY</h1>
+							<p class="login-subtitle">اكتب اسمك ومستوى الجري للانضمام</p>
+							<div class="field">
+								<label for="login-name">الاسم</label>
+								<input id="login-name" name="name" maxlength="20" autocomplete="nickname" placeholder="اكتب اسمك" required>
+							</div>
+							<div class="field">
+								<label for="login-level">مستوى الجري</label>
+								<select id="login-level" name="level">
+									<option>مبتدئ</option><option>متوسط</option><option>صعب</option>
+								</select>
+							</div>
+							<button class="primary-button" type="submit">دخول</button>
+						</form>
+					</main>`;
+			};
+
+			const renderPost = (post) => {
+				const isOwner = post.ownerUid === user.uid;
+				const postShares = shares[post.id] || {};
+				const isShared = Boolean(postShares[user.uid]);
+				const shareCount = Object.keys(postShares).length;
+				const distance = escapeHtml(post.distance ?? 5);
+				return `
+					<article class="post-card" data-post-id="${escapeHtml(post.id)}">
+						${isOwner ? `<div class="post-actions">
+							<button class="small-action" data-action="edit" data-id="${escapeHtml(post.id)}" aria-label="تعديل المنشور">تعديل</button>
+							<button class="small-action delete" data-action="delete" data-id="${escapeHtml(post.id)}" aria-label="حذف المنشور">حذف</button>
+						</div>` : ""}
+						<div class="post-summary">
+							<div class="detail-box"><span class="detail-label">الوقت</span><span class="detail-value">${formatSchedule(post)}</span></div>
+							<div class="detail-box"><span class="detail-label">نقطة التجمع</span><span class="detail-value">${escapeHtml(post.location || "غير محدد")}</span></div>
+						</div>
+						<div class="detail-grid">
+							<div class="detail-box wide"><span class="detail-label">تجمع وتسخين</span><span class="detail-value">${escapeHtml(post.warmup || "جلسة تسخين وتمدد")}</span></div>
+							<div class="detail-box wide"><span class="detail-label">مسار الجري</span><span class="detail-value">${escapeHtml(post.route || "مسار حر")}</span></div>
+						</div>
+						<div class="post-bottom">
+							<div class="detail-box"><span class="detail-label">الختام والجلسة</span><span class="detail-value">${escapeHtml(post.finish || "استراحة جماعية")}</span></div>
+							<div class="distance-box"><span class="distance-number">${distance}</span><span class="distance-unit">كيلومتر</span></div>
+						</div>
+						<button class="share-button${isShared ? " is-shared" : ""}" data-action="share" data-id="${escapeHtml(post.id)}" ${isOwner ? "disabled" : ""}>
+							<span aria-hidden="true">${isShared ? "✓" : "↗"}</span>
+							<span>${isOwner ? "تجمعك" : isShared ? "تمت المشاركة" : "مشاركة"} · ${shareCount}</span>
+						</button>
+					</article>`;
+			};
+
+			const renderHome = () => `
+				<header class="topbar"><div class="shell">
+					<div class="topbar-side"><button class="text-action" data-action="notifications" aria-label="الإشعارات" title="الإشعارات"><img class="notification-icon" src="assets/icons/bell-svgrepo-com.svg" alt="">${unreadNotificationCount() ? '<i class="notification-dot"></i>' : ""}</button></div>
+					<a class="brand" href="#home" data-action="home">Rally</a>
+					<div class="topbar-side"></div>
+				</div></header>
+				<main class="shell">
+					<section class="hero" aria-label="Rally">
+						<div class="hero-copy">
+							<p class="eyebrow">خطوتك الجاية أحلى معانا</p>
+							<h1>الجري أحلى<br>مع ناس بتحبك</h1>
+							<p>اكتشف تجمع قريب وانضم لأصحابك.</p>
+							<button class="primary-button" data-action="new-post">انشر تجمع</button>
+						</div>
+					</section>
+					<section class="post-list" aria-label="تجمعات الجري">
+						${posts.length ? posts.map(renderPost).join("") : `<div class="empty-state"><strong>لسه مفيش تجمعات</strong>ابدأ أول تجمع وشارك خطتك مع أصحابك.</div>`}
+					</section>
+				</main>
+				${renderNav("home")}`;
+
+			const renderProfile = () => `
+				${renderHeader()}
+				<main class="shell">
+					<h1 class="screen-title">الملف الشخصي</h1>
+					<section class="profile-panel">
+						<div class="avatar">${escapeHtml((user.name || "ر").trim().charAt(0).toUpperCase())}</div>
+						<h2 class="profile-name">${escapeHtml(user.name)}</h2>
+						<span class="level-chip">المستوى: ${escapeHtml(user.level || "مبتدئ")}</span>
+						<section class="theme-settings" aria-labelledby="theme-settings-title">
+							<h3 id="theme-settings-title">مظهر التطبيق</h3>
+							<div class="theme-options" role="group" aria-label="اختيار الألوان">
+								${[["golden", "ذهبي"], ["midnight", "أزرق ليلي"], ["emerald", "زمردي"]].map(([theme, label]) => `<button class="theme-choice" type="button" data-action="set-theme" data-theme="${theme}" aria-pressed="${activeTheme === theme}">${label}</button>`).join("")}
+							</div>
+						</section>
+						<p class="notification-status" role="status">${!("Notification" in window) ? "هذا المتصفح لا يدعم إشعارات الويب." : Notification.permission === "denied" ? "إشعارات Rally محظورة. افتح إعدادات الموقع بجوار عنوان الصفحة، واجعل الإشعارات «سماح»، ثم أعد تحميل الموقع." : registeredPushUid === user.uid ? "هذا الجهاز مسجل لاستقبال إشعارات Rally." : Notification.permission === "granted" ? "الإذن مسموح، لكن الجهاز لم يشترك بعد." : "فعّل الإشعارات لتصلك تنبيهات المشاركة على جهازك."}</p>
+						<button class="outline-button" style="margin-top:18px;min-width:220px" data-action="notification-settings">إعداد إشعارات المشاركة</button>
+						<button class="quiet-button" style="margin-top:8px" data-action="test-notification">اختبار إشعار الكمبيوتر</button>
+						<button class="danger-button" style="margin-top:28px;min-width:220px" data-action="logout">تسجيل الخروج</button>
+					</section>
+				</main>
+				${renderNav("profile")}`;
+
+			const renderHeader = () => `
+				<header class="topbar"><div class="shell">
+					<div class="topbar-side"><button class="text-action" data-action="notifications" aria-label="الإشعارات" title="الإشعارات"><img class="notification-icon" src="assets/icons/bell-svgrepo-com.svg" alt="">${unreadNotificationCount() ? '<i class="notification-dot"></i>' : ""}</button></div>
+					<a class="brand" href="#home" data-action="home">Rally</a>
+					<div class="topbar-side"></div>
+				</div></header>`;
+
+			const renderNotificationsHeader = () => `
+				<header class="topbar"><div class="shell">
+					<div class="topbar-side"><button class="back-button" data-action="home" aria-label="العودة للرئيسية" title="العودة للرئيسية"><img src="assets/icons/arrow-right.svg" alt=""></button></div>
+					<span class="brand">Rally</span>
+					<div class="topbar-side notification-toolbar">${notificationSelectionMode ? `<button type="button" data-action="select-all">${selectedNotificationIds.size === Object.keys(notifications).length ? "إلغاء الكل" : "تحديد الكل"}</button><button class="delete-selected" type="button" data-action="delete-selected" aria-label="حذف المحدد" title="حذف المحدد" ${selectedNotificationIds.size ? "" : "disabled"}>🗑 حذف</button>` : ""}</div>
+				</div></header>`;
+
+			const renderNav = (active) => `
+				<nav class="bottom-nav" aria-label="التنقل الرئيسي"><div class="shell nav-inner">
+					<button class="nav-item${active === "home" ? " active" : ""}" data-action="home" aria-label="الرئيسية" title="الرئيسية"><img class="nav-home-icon" src="assets/icons/297154.svg" alt=""></button>
+					<button class="nav-add" data-action="new-post" aria-label="إضافة تجمع" title="إضافة تجمع"><img src="assets/icons/737b218f069919dca91ea35ebc125a16.png" alt=""></button>
+					<button class="nav-item${active === "profile" ? " active" : ""}" data-action="profile" aria-label="حسابي" title="حسابي"><img class="nav-profile-icon" src="assets/icons/icons8-athlete-male-50.png" alt=""></button>
+				</div></nav>`;
+
+			const renderNotifications = () => {
+				const sharedPosts = posts.filter((post) => shares[post.id]?.[user.uid]);
+				const notificationItems = Object.entries(notifications)
+					.sort((left, right) => Number(right[1].createdAt || 0) - Number(left[1].createdAt || 0));
+				return `${renderNotificationsHeader()}<main class="shell">
+					<h1 class="screen-title">الإشعارات والمشاركات</h1>
+					${notificationItems.length ? `<section class="notification-list${notificationSelectionMode ? " selection-mode" : ""}">${notificationItems.map(([id, item]) => `
+						<article class="notification-item${selectedNotificationIds.has(id) ? " selected" : ""}" data-notification-id="${escapeHtml(id)}"><button class="notification-select" type="button" data-action="toggle-notification" data-id="${escapeHtml(id)}" role="checkbox" aria-checked="${selectedNotificationIds.has(id)}" aria-label="تحديد الإشعار">${selectedNotificationIds.has(id) ? "✓" : ""}</button><div class="notification-content"><strong>${escapeHtml(item.message || item.title)}</strong><small>${escapeHtml(new Date(item.createdAt || 0).toLocaleString("ar-EG"))}</small></div></article>`).join("")}</section>` : ""}
+					<div class="section-heading"><h2>التجمعات اللي شاركت فيها</h2><span>${sharedPosts.length}</span></div>
+					${sharedPosts.length ? `<section class="shared-list">${sharedPosts.map((post) => `
+						<article class="shared-row"><strong>${escapeHtml(post.location)}</strong><span>${formatSchedule(post).replace("<br>", " · ")} · ${escapeHtml(post.distance)} km</span></article>`).join("")}</section>` : `<div class="empty-state"><strong>لسه مفيش مشاركات</strong>لما تشارك في تجمع، هتلاقيه هنا.</div>`}
+				</main>${renderNav("")}`;
+			};
+
+			const toggleNotificationSelection = (id) => {
+				notificationSelectionMode = true;
+				if (selectedNotificationIds.has(id)) selectedNotificationIds.delete(id);
+				else selectedNotificationIds.add(id);
+				if (selectedNotificationIds.size === 0) notificationSelectionMode = false;
+				render();
+			};
+
+			const selectAllNotifications = () => {
+				const ids = Object.keys(notifications);
+				if (selectedNotificationIds.size === ids.length) {
+					selectedNotificationIds.clear();
+					notificationSelectionMode = false;
+				} else {
+					selectedNotificationIds = new Set(ids);
+					notificationSelectionMode = true;
+				}
+				render();
+			};
+
+			const deleteSelectedNotifications = async () => {
+				const ids = [...selectedNotificationIds];
+				if (!ids.length) return;
+				try {
+					await Promise.all(ids.map((id) => remove(ref(database, `notifications/${user.uid}/${id}`))));
+					selectedNotificationIds.clear();
+					notificationSelectionMode = false;
+					showToast("تم حذف الإشعارات المحددة");
+				} catch (error) {
+					showToast("تعذر حذف الإشعارات المحددة.");
+				}
+			};
+
+			const render = () => {
+				if (!user) {
+					renderLogin();
+					return;
+				}
+				const app = document.getElementById("app");
+				app.innerHTML = currentView === "profile" ? renderProfile()
+					: currentView === "notifications" ? renderNotifications()
+					: renderHome();
+			};
+
+			const openPostForm = (post = null) => {
+				const now = new Date();
+				const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+				const value = (key, fallback = "") => escapeHtml(post?.[key] ?? fallback);
+				document.getElementById("overlay-root").innerHTML = `
+					<div class="modal-backdrop" data-action="backdrop-close">
+						<section class="modal" role="dialog" aria-modal="true" aria-labelledby="post-dialog-title">
+							<div class="modal-header"><h2 id="post-dialog-title">${post ? "تعديل التجمع" : "إنشاء تجمع جديد"}</h2><button class="modal-close" data-action="close-modal" aria-label="إغلاق">×</button></div>
+							<form id="post-form" data-post-id="${escapeHtml(post?.id ?? "")}">
+								<div class="form-grid">
+									<div class="field full"><label for="location">نقطة التجمع</label><input id="location" name="location" maxlength="100" placeholder="مثال: ميدان مجدي يعقوب" value="${value("location")}" required></div>
+									<div class="field"><label for="date">اليوم والتاريخ</label><input id="date" name="date" type="date" value="${value("date", today)}" required></div>
+									<div class="field"><label for="distance">المسافة (كم)</label><input id="distance" name="distance" type="number" min="1" max="100" step="1" value="${value("distance", "5")}" required></div>
+									<div class="field"><label for="start-time">وقت البداية</label><input id="start-time" name="startTime" type="time" value="${value("startTime", "07:00")}" required></div>
+									<div class="field"><label for="end-time">وقت النهاية</label><input id="end-time" name="endTime" type="time" value="${value("endTime", "07:30")}" required></div>
+									<div class="field full"><label for="warmup">تجمع وتسخين</label><textarea id="warmup" name="warmup" maxlength="240" placeholder="جلسة تسخين وتمدد">${value("warmup", "جلسة تسخين وتمدد")}</textarea></div>
+									<div class="field full"><label for="route">مسار الجري</label><textarea id="route" name="route" maxlength="240" placeholder="هنطلع من ... إلى ...">${value("route", "مسار حر")}</textarea></div>
+									<div class="field full"><label for="finish">الختام والجلسة</label><input id="finish" name="finish" maxlength="160" placeholder="استراحة جماعية" value="${value("finish", "استراحة جماعية")}"></div>
+								</div>
+								<div class="modal-actions"><button class="primary-button" type="submit">${post ? "حفظ التعديل" : "نشر التجمع"}</button><button class="outline-button" type="button" data-action="close-modal">إلغاء</button></div>
+							</form>
+						</section>
+					</div>`;
+				document.getElementById("location").focus();
+			};
+
+			const closeModal = () => { document.getElementById("overlay-root").innerHTML = ""; };
+			const showToast = (message) => {
+				const root = document.getElementById("toast-root");
+				root.innerHTML = `<div class="toast">${escapeHtml(message)}</div>`;
+				clearTimeout(toastTimer);
+				toastTimer = setTimeout(() => { root.innerHTML = ""; }, 2400);
+			};
+
+			const removePost = async (id) => {
+				const post = posts.find((item) => item.id === id);
+				if (!post || post.ownerUid !== user.uid) return;
+				if (!window.confirm("متأكد إنك عايز تحذف التجمع ده؟")) return;
+				try {
+					await remove(ref(database, `posts/${id}`));
+					showToast("تم حذف التجمع");
+				} catch (error) {
+					showToast(error.message || "تعذر حذف التجمع. تحقق من الاتصال بالخادم.");
+				}
+			};
+
+			const toggleShare = async (id) => {
+				const post = posts.find((item) => item.id === id);
+				if (!post || post.ownerUid === user.uid) return;
+				const shareRef = ref(database, `postShares/${id}/${user.uid}`);
+				try {
+					if (shares[id]?.[user.uid]) {
+						await remove(shareRef);
+						showToast("تم إلغاء المشاركة");
+					} else {
+						const shareResult = await set(shareRef, true);
+						const notificationRef = push(ref(database, `notifications/${post.ownerUid}`));
+						let inAppNotificationSaved = true;
+						try {
+							await set(notificationRef, {
+								title: "مشارك جديد في تجمعك",
+								message: `${user.name} شارك في تجمعك: ${post.location}`,
+								postId: id,
+								ownerUid: post.ownerUid,
+								actorUid: user.uid,
+								actorName: user.name,
+								createdAt: Date.now(),
+								read: false
+							});
+						} catch (notificationError) {
+							inAppNotificationSaved = false;
+						}
+						const pushResult = shareResult?.push;
+						showToast(!pushResult?.configured
+							? "تمت المشاركة، لكن إعداد مفاتيح Web Push غير مكتمل على الخادم."
+							: pushResult.subscriptions === 0
+								? "تمت المشاركة، لكن جهاز صاحب التجمع غير مشترك في الإشعارات."
+								: pushResult.sent > 0
+									? inAppNotificationSaved ? "تمت المشاركة وأُرسل إشعار الجهاز." : "تمت المشاركة وأُرسل إشعار الجهاز، لكن تعذر حفظ إشعار الجرس."
+									: "تمت المشاركة، لكن تعذر تسليم إشعار الجهاز. تحقق من إعداد Web Push.");
+					}
+				} catch (error) {
+					showToast(error.message || "تعذرت المشاركة. تحقق من الاتصال بالخادم.");
+				}
+			};
+
+			const showPushConsent = (force = false) => {
+				if (!user || !("Notification" in window) || Notification.permission !== "default") return;
+				const key = pushPromptKey(user.uid);
+				if (!force && (localStorage.getItem(key) || pushPromptShownUid === user.uid)) return;
+				pushPromptShownUid = user.uid;
+				document.getElementById("overlay-root").innerHTML = `
+					<div class="modal-backdrop" data-action="push-backdrop">
+						<section class="modal" role="dialog" aria-modal="true" aria-labelledby="push-title">
+							<div class="modal-header"><h2 id="push-title">تفعيل إشعارات Rally؟</h2></div>
+							<p>هنبعتلك إشعارًا لما حد ينضم لتجمع أنت نشرته، حتى لو الموقع مقفول.</p>
+							<div class="modal-actions"><button class="primary-button" type="button" data-action="enable-push">السماح بالإشعارات</button><button class="outline-button" type="button" data-action="push-later">ليس الآن</button></div>
+						</section>
+					</div>`;
+			};
+
+			const showInstallPrompt = () => {
+				if (localStorage.getItem(installPromptKey) || localStorage.getItem("rally_installed") || localStorage.getItem("rally_install_prompt_dismissed")) return;
+				const iosDevice = /iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.MSStream;
+				if (!deferredInstallPrompt && !iosDevice) return;
+				localStorage.setItem(installPromptKey, "1");
+				document.getElementById("overlay-root").innerHTML = `
+					<div class="modal-backdrop" data-action="install-backdrop">
+						<section class="modal" role="dialog" aria-modal="true" aria-labelledby="install-title">
+							<div class="modal-header"><h2 id="install-title">أضف Rally إلى هاتفك؟</h2></div>
+							<p>${iosDevice ? "من قائمة المشاركة في Safari اختر «إضافة إلى الشاشة الرئيسية»." : "ثبّت Rally وافتحه كتطبيق من الشاشة الرئيسية."}</p>
+							<div class="modal-actions"><button class="primary-button" type="button" data-action="${deferredInstallPrompt ? "install-app" : "install-help"}">${deferredInstallPrompt ? "تثبيت Rally" : "حسنًا"}</button><button class="outline-button" type="button" data-action="install-later">لاحقًا</button></div>
+						</section>
+					</div>`;
+			};
+
+			const installApp = async () => {
+				if (!deferredInstallPrompt) return;
+				const installEvent = deferredInstallPrompt;
+				deferredInstallPrompt = null;
+				closeModal();
+				await installEvent.prompt();
+				const choice = await installEvent.userChoice;
+				if (choice.outcome === "dismissed") {
+					localStorage.setItem("rally_install_prompt_dismissed", "1");
+				} else {
+					localStorage.setItem("rally_installed", "1");
+				}
+			};
+
+			const syncPushSubscription = async (requestPermission = false) => {
+				if (!user) return false;
+				if (!("Notification" in window)) throw new Error("هذا المتصفح لا يدعم إشعارات الويب.");
+				if (requestPermission && Notification.permission === "default") {
+					await Notification.requestPermission();
+				}
+				if (Notification.permission !== "granted") return false;
+				await registerPushSubscription();
+				const enabled = true;
+				registeredPushUid = enabled ? user.uid : null;
+				if (currentView === "profile") render();
+				return enabled;
+			};
+
+			const testSystemNotification = async () => {
+				if (!("Notification" in window)) {
+					showToast("الإشعارات غير مدعومة في هذا المتصفح.");
+					return;
+				}
+				if (Notification.permission !== "granted") {
+					showToast(Notification.permission === "denied"
+						? "اسمح بإشعارات Rally من إعدادات الموقع في المتصفح أولًا."
+						: "اضغط إعداد إشعارات المشاركة واسمح بها أولًا.");
+					return;
+				}
+				const options = {
+					body: "إذا ظهر هذا التنبيه، فإشعارات الجهاز تعمل على هذا الكمبيوتر.",
+					icon: "./assets/icons/rally-icon-192.png",
+					data: { url: new URL("./index.html", window.location.href).pathname }
+				};
+				try {
+					const registration = await navigator.serviceWorker.getRegistration();
+					if (registration) {
+						await registration.showNotification("اختبار إشعارات Rally", options);
+					} else {
+						new Notification("اختبار إشعارات Rally", options);
+					}
+				} catch (error) {
+					showToast(error.message || "تعذر عرض إشعار الاختبار.");
+				}
+			};
+
+			const enablePush = async () => {
+				if (!("Notification" in window)) {
+					showToast("الإشعارات غير مدعومة في هذا المتصفح.");
+					closeModal();
+					return;
+				}
+				try {
+					const enabled = await syncPushSubscription(true);
+					localStorage.setItem(pushPromptKey(user.uid), "1");
+					closeModal();
+					showToast(enabled ? "تم تفعيل إشعارات هذا الجهاز." : "لم يتم السماح بالإشعارات على هذا الجهاز.");
+				} catch (error) {
+					closeModal();
+					showToast(error.message || "تعذر تفعيل الإشعارات.");
+				}
+				showInstallPrompt();
+			};
+
+			const cancelNotificationHold = () => {
+				if (notificationHoldTimer) clearTimeout(notificationHoldTimer);
+				notificationHoldTimer = null;
+			};
+
+			document.addEventListener("pointerdown", (event) => {
+				if (notificationSelectionMode || event.target.closest("[data-action]")) return;
+				const notificationItem = event.target.closest(".notification-item[data-notification-id]");
+				if (!notificationItem) return;
+				cancelNotificationHold();
+				const id = notificationItem.dataset.notificationId;
+				const startX = event.clientX;
+				const startY = event.clientY;
+				notificationHoldTimer = setTimeout(() => {
+					notificationHoldTimer = null;
+					suppressNotificationClickId = id;
+					notificationSelectionMode = true;
+					selectedNotificationIds.add(id);
+					render();
+					setTimeout(() => {
+						if (suppressNotificationClickId === id) suppressNotificationClickId = null;
+					}, 900);
+				}, 550);
+				notificationItem.dataset.holdX = String(startX);
+				notificationItem.dataset.holdY = String(startY);
+			}, { passive: true });
+
+			document.addEventListener("pointermove", (event) => {
+				if (!notificationHoldTimer) return;
+				const notificationItem = event.target.closest(".notification-item[data-notification-id]");
+				if (!notificationItem) return cancelNotificationHold();
+				const movedX = Math.abs(event.clientX - Number(notificationItem.dataset.holdX));
+				const movedY = Math.abs(event.clientY - Number(notificationItem.dataset.holdY));
+				if (movedX > 10 || movedY > 10) cancelNotificationHold();
+			}, { passive: true });
+			document.addEventListener("pointerup", cancelNotificationHold, { passive: true });
+			document.addEventListener("pointercancel", cancelNotificationHold, { passive: true });
+
+			document.addEventListener("click", async (event) => {
+				const notificationItem = event.target.closest(".notification-item[data-notification-id]");
+				if (notificationItem && !event.target.closest("[data-action]")) {
+					const notificationId = notificationItem.dataset.notificationId;
+					if (suppressNotificationClickId === notificationId) {
+						suppressNotificationClickId = null;
+						return;
+					}
+					if (notificationSelectionMode) toggleNotificationSelection(notificationId);
+					return;
+				}
+				const button = event.target.closest("[data-action]");
+				if (!button) return;
+				const { action, id } = button.dataset;
+				if (action === "home") { event.preventDefault(); currentView = "home"; render(); }
+				if (action === "profile") { currentView = "profile"; render(); }
+				if (action === "set-theme" && availableThemes.includes(button.dataset.theme)) {
+					activeTheme = button.dataset.theme;
+					localStorage.setItem(THEME_STORAGE_KEY, activeTheme);
+					applyTheme();
+					render();
+				}
+				if (action === "notifications") { currentView = "notifications"; render(); markNotificationsRead(); }
+				if (action === "toggle-notification") toggleNotificationSelection(id);
+				if (action === "select-all") selectAllNotifications();
+				if (action === "delete-selected") await deleteSelectedNotifications();
+				if (action === "new-post") openPostForm();
+				if (action === "close-modal") closeModal();
+				if (action === "push-later") {
+					localStorage.setItem(pushPromptKey(user.uid), "1");
+					closeModal();
+					showInstallPrompt();
+				}
+				if (action === "enable-push") await enablePush();
+				if (action === "install-app") await installApp();
+				if (action === "install-later") {
+					localStorage.setItem("rally_install_prompt_dismissed", "1");
+					deferredInstallPrompt = null;
+					closeModal();
+				}
+				if (action === "install-help") closeModal();
+				if (action === "notification-settings") {
+					if (!("Notification" in window)) {
+						showToast("الإشعارات غير مدعومة في هذا المتصفح.");
+					} else if (Notification.permission === "granted") {
+						try { await syncPushSubscription(); showToast("إشعارات هذا الجهاز مفعلة."); }
+						catch (error) { showToast(error.message); }
+					} else if (Notification.permission === "denied") {
+						showToast("من إعدادات الموقع بجوار العنوان، غيّر الإشعارات إلى سماح ثم أعد تحميل Rally.");
+					} else {
+						showPushConsent(true);
+					}
+				}
+				if (action === "test-notification") await testSystemNotification();
+				if (action === "edit") {
+					const post = posts.find((item) => item.id === id);
+					if (post?.ownerUid === user.uid) openPostForm(post);
+				}
+				if (action === "delete") removePost(id);
+				if (action === "share") toggleShare(id);
+				if (action === "logout") {
+					await signOut(auth);
+				}
+				if ((action === "backdrop-close" || action === "push-backdrop" || action === "install-backdrop") && event.target === button) {
+					if (action === "install-backdrop") localStorage.setItem("rally_install_prompt_dismissed", "1");
+					closeModal();
+				}
+			});
+
+			document.addEventListener("submit", async (event) => {
+				if (event.target.id === "auth-form") {
+					event.preventDefault();
+					const form = new FormData(event.target);
+					const name = String(form.get("name") || "").trim();
+					const level = String(form.get("level") || "مبتدئ");
+					try {
+						finishingRegistration = true;
+						const credential = auth.currentUser
+							? { user: auth.currentUser }
+							: await signInAnonymously(auth);
+						await updateProfile(credential.user, { displayName: name });
+						await set(ref(database, `users/${credential.user.uid}`), { name, level, createdAt: Date.now() });
+						user = { uid: credential.user.uid, name, level };
+						finishingRegistration = false;
+						currentView = "home";
+						render();
+						showPushConsent();
+						if (!("Notification" in window) || Notification.permission !== "default") showInstallPrompt();
+					} catch (error) {
+						finishingRegistration = false;
+						showToast(error.message || "تعذر تسجيل الدخول. تحقق من الاتصال بالخادم.");
+					}
+					return;
+				}
+				if (event.target.id === "post-form") {
+					event.preventDefault();
+					const formElement = event.target;
+					const form = new FormData(formElement);
+					const startTime = String(form.get("startTime") || "");
+					const endTime = String(form.get("endTime") || "");
+					if (startTime >= endTime) {
+						showToast("وقت النهاية لازم يكون بعد وقت البداية");
+						return;
+					}
+					const id = formElement.dataset.postId;
+					const existing = posts.find((item) => item.id === id);
+					const start = startTime.split(":").map(Number);
+					const end = endTime.split(":").map(Number);
+					const formatTime = ([hour, minute]) => `${hour % 12 || 12}:${String(minute).padStart(2, "0")} ${hour < 12 ? "ص" : "م"}`;
+					const post = {
+						...(existing || {}),
+						ownerUid: existing?.ownerUid || user.uid,
+						ownerName: existing?.ownerName || user.name,
+						location: String(form.get("location") || "").trim(),
+						date: String(form.get("date") || ""),
+						startTime,
+						endTime,
+						time: `من ${formatTime(start)} إلى ${formatTime(end)}`,
+						warmup: String(form.get("warmup") || "").trim() || "جلسة تسخين وتمدد",
+						route: String(form.get("route") || "").trim() || "مسار حر",
+						distance: Number(form.get("distance")) || 5,
+						finish: String(form.get("finish") || "").trim() || "استراحة جماعية",
+						createdAt: existing?.createdAt || Date.now()
+					};
+					try {
+						if (existing) {
+							await update(ref(database, `posts/${id}`), post);
+						} else {
+							const newPostRef = push(ref(database, "posts"));
+							await set(newPostRef, post);
+						}
+						closeModal();
+						currentView = "home";
+						render();
+						showToast(existing ? "تم حفظ التعديل" : "تم نشر التجمع للجميع");
+					} catch (error) {
+						console.error("Failed to publish running meetup:", error);
+						showToast(error.message || "تعذر نشر التجمع. تحقق من الاتصال بالخادم.");
+					}
+				}
+			});
+
+			const stopSubscriptions = () => {
+				Object.keys(subscriptions).forEach((key) => {
+					if (subscriptions[key]) subscriptions[key]();
+					subscriptions[key] = null;
+				});
+			};
+
+			onAuthStateChanged(auth, (sessionUser) => {
+				const revision = ++authRevision;
+				stopSubscriptions();
+				registeredPushUid = null;
+				if (!sessionUser) {
+					user = null;
+					notificationSelectionMode = false;
+					selectedNotificationIds.clear();
+					pushPromptShownUid = null;
+					posts = [];
+					shares = {};
+					notifications = {};
+					currentView = "home";
+					closeModal();
+					render();
+					return;
+				}
+
+				currentView = "home";
+				user = {
+					uid: sessionUser.uid,
+					name: sessionUser.displayName || "مشارك",
+					level: "مبتدئ"
+				};
+				const profileRef = ref(database, `users/${sessionUser.uid}`);
+				subscriptions.profile = onValue(profileRef, (snapshot) => {
+					if (revision !== authRevision) return;
+					if (finishingRegistration && !snapshot.exists()) return;
+					const profile = snapshot.val() || {};
+					user = {
+						...user,
+						...profile,
+						uid: sessionUser.uid,
+						name: profile.name || sessionUser.displayName || user.name,
+						level: profile.level || "مبتدئ"
+					};
+					render();
+					if (!profile.name) {
+						update(profileRef, { name: user.name, level: user.level, createdAt: Date.now() }).catch(() => {});
+					}
+					if ("Notification" in window && Notification.permission === "granted" && registeredPushUid !== user.uid) {
+						syncPushSubscription().catch((error) => showToast(error.message));
+					} else if ("Notification" in window && !finishingRegistration && Notification.permission === "default" && pushPromptShownUid !== user.uid) {
+						setTimeout(() => showPushConsent(), 350);
+					}
+				}, (error) => showToast(error.message || "تعذر قراءة ملف الحساب."));
+
+				subscriptions.posts = onValue(ref(database, "posts"), (snapshot) => {
+					if (revision !== authRevision) return;
+					posts = Object.entries(snapshot.val() || {})
+						.map(([id, post]) => ({ ...post, id }))
+						.filter((post) => Boolean(post.ownerUid))
+						.sort((left, right) => Number(right.createdAt || 0) - Number(left.createdAt || 0));
+					render();
+				}, () => showToast("تعذر تحميل التجمعات من قاعدة البيانات."));
+
+				subscriptions.shares = onValue(ref(database, "postShares"), (snapshot) => {
+					if (revision !== authRevision) return;
+					shares = snapshot.val() || {};
+					render();
+				}, (error) => showToast(error.message || "تعذر تحميل المشاركات."));
+
+				subscriptions.notifications = onValue(ref(database, `notifications/${sessionUser.uid}`), (snapshot) => {
+					if (revision !== authRevision) return;
+					notifications = snapshot.val() || {};
+					selectedNotificationIds = new Set([...selectedNotificationIds].filter((id) => Object.hasOwn(notifications, id)));
+					if (selectedNotificationIds.size === 0) notificationSelectionMode = false;
+					render();
+				}, (error) => showToast(error.message || "تعذر تحميل الإشعارات."));
+				render();
+			});
+
+			window.addEventListener("beforeinstallprompt", (event) => {
+				if (window.matchMedia("(display-mode: standalone)").matches || localStorage.getItem("rally_installed")) return;
+				event.preventDefault();
+				deferredInstallPrompt = event;
+				if (user && !document.getElementById("overlay-root").firstElementChild) showInstallPrompt();
+			});
+
+			window.addEventListener("appinstalled", () => {
+				deferredInstallPrompt = null;
+				localStorage.setItem("rally_installed", "1");
+				closeModal();
+				showToast("تم تثبيت Rally على جهازك.");
+			});
+
+			render();
+		})();
+	</script>
+</body>
+</html>
