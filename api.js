@@ -1,7 +1,7 @@
 const sessionStorageKey = "rally_session_token";
 const deviceStorageKey = "rally_device_id";
 
-// هنا تم تعديل الرابط ليقرأ من سيرفر Railway المباشر الخاص بك دائماً لحل مشكلة 404
+// الرابط النهائي الصحيح والمتصل بسيرفر Railway الخاص بك
 const apiBase = "https://railway.app".replace(/\/\$/, "");
 
 export const auth = { currentUser: null };
