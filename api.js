@@ -1,11 +1,8 @@
 const sessionStorageKey = "rally_session_token";
 const deviceStorageKey = "rally_device_id";
-const localHostnames = new Set(["localhost", "127.0.0.1"]);
-const apiBase = (window.RALLY_API_BASE || (
-	localHostnames.has(window.location.hostname) && window.location.port !== "3000"
-		? `${window.location.protocol}//${window.location.hostname}:3000`
-		: ""
-)).replace(/\/$/, "");
+
+// هنا تم تعديل الرابط ليقرأ من سيرفر Railway المباشر الخاص بك دائماً لحل مشكلة 404
+const apiBase = "https://railway.app".replace(/\/\$/, "");
 
 export const auth = { currentUser: null };
 export const database = {};
@@ -200,3 +197,4 @@ export const registerPushSubscription = async () => {
 	});
 	return subscription;
 };
+ 
